@@ -67,10 +67,10 @@ public class TemperatureSeriesAnalysis {
         doNotAllowEmpty();
         double closestTemp = tempArr[0];
         for (int i = 1; i < tempCounter; i++) {
-            if (Math.abs(closestTemp - tempValue) > Math.abs(tempArr[i] -
-                    tempValue) || Math.abs(closestTemp - tempValue) == Math.abs(
-                            tempArr[i] - tempValue) && closestTemp < tempArr[i])
-            {
+            if (Math.abs(closestTemp - tempValue) > Math.abs(tempArr[i]
+                    - tempValue) || Math.abs(closestTemp - tempValue) ==
+                    Math.abs(tempArr[i] - tempValue) && closestTemp < tempArr[i]
+            ) {
                 closestTemp = tempArr[i];
             }
         }
@@ -79,12 +79,14 @@ public class TemperatureSeriesAnalysis {
 
     public double[] findTempsLessThan(final double tempValue) {
         double[] actualTempArr = Arrays.copyOf(tempArr, tempCounter);
-        return Arrays.stream(actualTempArr).filter(temp -> temp < tempValue).toArray();
+        return Arrays.stream(actualTempArr).filter(temp -> temp < tempValue
+        ).toArray();
     }
 
     public double[] findTempsGreaterThan(double tempValue) {
         double[] actualTempArr = Arrays.copyOf(tempArr, tempCounter);
-        return Arrays.stream(actualTempArr).filter(temp -> temp >= tempValue).toArray();
+        return Arrays.stream(actualTempArr).filter(temp -> temp >= tempValue
+        ).toArray();
     }
 
     public TempSummaryStatistics summaryStatistics() {
@@ -92,7 +94,7 @@ public class TemperatureSeriesAnalysis {
     }
 
     public int addTemps(double... temps) {
-        for (double temp: temps) {
+        for (double temp : temps) {
             if (temp < MIN_TEMP) {
                 throw new InputMismatchException();
             }
@@ -102,7 +104,7 @@ public class TemperatureSeriesAnalysis {
             tempCounter = tempArr.length;
             return tempCounter;
         }
-        for (double temp: temps) {
+        for (double temp : temps) {
             if (tempCounter == tempArr.length) {
                 double[] newTempArr = new double[2 * tempCounter];
                 System.arraycopy(tempArr, 0, newTempArr, 0, tempCounter);
