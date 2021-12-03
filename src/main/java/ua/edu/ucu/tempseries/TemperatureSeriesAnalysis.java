@@ -65,12 +65,13 @@ public class TemperatureSeriesAnalysis {
 
     public double findTempClosestToValue(double tempValue) {
         doNotAllowEmpty();
+        double DELTA = .0000001;
         double closestTemp = tempArr[0];
         for (int i = 1; i < tempCounter; i++) {
             if (Math.abs(closestTemp - tempValue) > Math.abs(tempArr[i]
-                    - tempValue) || Math.abs(closestTemp - tempValue) ==
-                    Math.abs(tempArr[i] - tempValue) && closestTemp < tempArr[i]
-            ) {
+                    - tempValue) || Math.abs(Math.abs(closestTemp - tempValue)
+                    - Math.abs(tempArr[i] - tempValue)) < DELTA && closestTemp <
+                    tempArr[i]) {
                 closestTemp = tempArr[i];
             }
         }
